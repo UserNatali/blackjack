@@ -24,7 +24,9 @@ class AbstractPlayer(abc.ABC):
     def change_bet(self,  max_bet, min_bet):
         pass
 
-
+    @abc.abstractmethod
+    def ask_card(self):
+        pass
 
     def print_cards(self):
         print(self, " data")
