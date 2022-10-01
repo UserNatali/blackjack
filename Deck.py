@@ -1,12 +1,14 @@
-from const import SUIT, RANKS, PRINTED
 from itertools import product
 from random import shuffle
 
+from const import PRINTED, SUITS, RANKS
+
 
 class Card:
-    def __init__(self, suit, ranks, picture, points):
+
+    def __init__(self, suit, rank, picture, points):
         self.suit = suit
-        self.ranks = ranks
+        self.rank = rank
         self.picture = picture
         self.points = points
 
@@ -16,21 +18,22 @@ class Card:
 
 
 class Deck:
+
     def __init__(self):
         self.cards = self._generate_deck()
         shuffle(self.cards)
 
     def _generate_deck(self):
         cards = []
-        for suit, rank in product(SUIT, RANKS):
-            if rank == "ace":
+        for suit, rank in product(SUITS, RANKS):
+            if rank == 'ace':
                 points = 11
             elif rank.isdigit():
                 points = int(rank)
             else:
                 points = 10
             picture = PRINTED.get(rank)
-            c = Card(suit=suit, ranks=rank, points=points, picture=picture )
+            c = Card(suit=suit, rank=rank, points=points, picture=picture)
             cards.append(c)
         return cards
 
